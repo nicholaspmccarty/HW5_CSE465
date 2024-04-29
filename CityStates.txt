@@ -1,3 +1,3 @@
-FRANKLIN (Population: Unknown): VA, NY, TN, NH, IN, KS, TX, AL, SD, PA, GA, ID, MI, NE, LA, MD, OH, IA, NC, WI, ME, MO, VT, MN, AR, MA, IL, WV, CT, NJ, KY
-OXFORD (Population: Unknown): NY, IN, KS, AL, PA, CO, GA, ID, MI, NE, MD, OH, IA, NC, WI, ME, AR, MA, FL, CT, NJ, MS
+FRANKLIN (Population: Unknown): AR, MA, NE, OH, NH, IN, LA, NC, MI, WV, MD, MO, TN, MN, NY, IL, WI, NJ, TX, VA, ID, CT, KY, IA, PA, GA, ME, SD, AL, VT, KS
+OXFORD (Population: Unknown): AR, MA, NE, OH, MS, IN, CO, NC, MI, FL, MD, NY, WI, NJ, ID, CT, IA, PA, GA, ME, AL, KS
 MELVINDALE (Population: Unknown): MI

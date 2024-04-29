@@ -1,5 +1,19 @@
 import datetime
 import os
+import time
+
+
+"""
+  Homework#5
+
+  Add your name here: Nicholas McCarty
+
+  You are free to create as many classes within the hw5.py file or across 
+  multiple files as you need. However, ensure that the hw5.py file is the 
+  only one that contains a __main__ method. This specific setup is crucial 
+  because your instructor will run the hw5.py file to execute and evaluate 
+  your work.
+"""
 
 class DataProcessedEvent:
     handlers = []
@@ -15,7 +29,7 @@ class DataProcessedEvent:
 
 
 def main():
-    start_time = datetime.datetime.now()
+    start_time = time.perf_counter()  # Do not remove this line
 
     common_city = CommonCity("commonCityNames.txt")
     common_city.find_common_cities()
@@ -29,9 +43,10 @@ def main():
     if population is not None:
         print(f"Population of New York: {population}")
 
-    end_time = datetime.datetime.now()
-    elapsed_time = (end_time - start_time).total_seconds() * 1000
-    print(f"Elapsed Time: {elapsed_time} ms")
+    end_time = time.perf_counter()
+    # Calculate the runtime in milliseconds
+    runtime_ms = (end_time - start_time) * 1000
+    print(f"The runtime of the program is {runtime_ms} milliseconds.") 
 
 
 class IZipProcessor:
@@ -138,3 +153,11 @@ class CityStates(IZipProcessor):
 
 if __name__ == "__main__":
     main()
+
+def mapped_conversion(data):
+    mapped_data = list(map(str.upper, data))
+  
+    filtered_data = list(filter(lambda x: x.startswith('A'), mapped_data))
+    
+    print("Mapped data:", mapped_data)
+    print("Filtered data:", filtered_data)
