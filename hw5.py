@@ -79,17 +79,22 @@ class LatLon(IZipProcessor):
         self.output_file_name = output_file_name
         self.zip_lat_long = {}
         self.load_data()
+        self.do_process()
 
     def load_data(self):
         with open("zipcodes.txt", "r") as file:
             lines = file.readlines()
-        zip_codes = set(line.strip() for line in open("zips.txt", "r"))
-        for line in lines:
-            parts = line.split('\t')
+        zip_codes = set(map(str.strip, open("zips.txt", "r")))
+        for parts in map(lambda line: line.split('\t'), lines):
             if len(parts) > 7:
                 zip_code, lat, lon = parts[1], parts[6], parts[7]
                 if zip_code in zip_codes and zip_code not in self.zip_lat_long:
                     self.zip_lat_long[zip_code] = f"{lat} {lon}"
+
+    def do_process(self):
+        with open(self.output_file_name, "w") as file:
+            for zip_code, lat_lon in self.zip_lat_long.items():
+                file.write(f"{zip_code}: {lat_lon}\n")
 
 class CityStates(IZipProcessor):
     def __init__(self, output_file_name):
