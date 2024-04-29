@@ -90,3 +90,43 @@ class LatLon(IZipProcessor):
                 zip_code, lat, lon = parts[1], parts[6], parts[7]
                 if zip_code in zip_codes and zip_code not in self.zip_lat_long:
                     self.zip_lat_long[zip_code] = f"{lat} {lon}"
+
+class CityStates(IZipProcessor):
+    def __init__(self, output_file_name):
+        self.output_file_name = output_file_name
+        self.cities = set()
+        self.city_populations = {}
+        self.load_data()
+
+    def load_data(self):
+        with open("cities.txt", "r") as file:
+            self.cities = set(line.strip().upper() for line in file.readlines())
+        self.do_process()
+
+    def do_process(self):
+        city_states = {}
+        with open("zipcodes.txt", "r") as file:
+            lines = file.readlines()
+
+        for line in lines:
+            parts = line.split('\t')
+            if len(parts) > 4:
+                city, state, population = parts[3].upper().strip(), parts[4].strip(), parts[5].strip()
+                if city in self.cities:
+                    if city not in city_states:
+                        city_states[city] = set()
+                    city_states[city].add(state)
+                    if population.isdigit():
+                        self.city_populations[city] = int(population)
+
+        with open(self.output_file_name, "w") as file:
+            for city, states in city_states.items():
+                population_info = f" (Population: {self.city_populations.get(city, 'Unknown')})"
+                file.write(f"{city}{population_info}: {', '.join(states)}\n")
+
+    def try_get_population(self, city):
+        return self.city_populations.get(city.upper())
+
+
+if __name__ == "__main__":
+    main()
