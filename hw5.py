@@ -25,3 +25,22 @@ class DataProcessedEvent:
 
 def main():
     DataProcessedEvent.add_handler(lambda: print("Data processing complete."))
+
+class IZipProcessor:
+    def load_data(self):
+        pass
+
+    def do_process(self):
+        pass
+
+class CommonCity(IZipProcessor):
+    def __init__(self, filename):
+        self.filename = filename
+        self.state_cities = {}
+        self.load_data()
+
+    def load_data(self):
+        with open("states.txt", "r") as file:
+            states = file.readlines()
+        for state in states:
+            self.state_cities[state.strip()] = set()
