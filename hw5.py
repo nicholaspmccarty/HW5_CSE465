@@ -91,6 +91,9 @@ class LatLon(IZipProcessor):
                 if zip_code in zip_codes and zip_code not in self.zip_lat_long:
                     self.zip_lat_long[zip_code] = f"{lat} {lon}"
 
+    def get_multiple_populations(self, *cities):
+      return {city: self.try_get_population(city) for city in cities}
+
     def do_process(self):
         with open(self.output_file_name, "w") as file:
             for zip_code, lat_lon in self.zip_lat_long.items():
