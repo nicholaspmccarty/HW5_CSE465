@@ -13,6 +13,8 @@ import time
   only one that contains a __main__ method. This specific setup is crucial 
   because your instructor will run the hw5.py file to execute and evaluate 
   your work.
+
+  I am competing for competitive runtime!
 """
 
 class DataProcessedEvent:
